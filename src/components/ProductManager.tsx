@@ -1,12 +1,13 @@
 import React from 'react';
-import { ProductList } from './ProductList';
 import { CategoryFilter } from './CategoryFilter';
+import { ProductList } from './ProductList';
 
 export const ProductManager: React.FC = () => {
+
   return (
     <div>
       <CategoryFilter />
-      <ProductList productList={[]} />
+      <ProductList />
     </div>
   );
 };

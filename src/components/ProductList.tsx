@@ -1,13 +1,25 @@
-import React from 'react';
-import { Product } from '../models/Product';
+import React from 'react'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../features/productSlice';
+import { AppDispatch, RootState } from '../store/store';
+import { Loading } from './Loading';
+import { ProductTable } from './ProductTable';
+import { Error } from './Error';
 
-interface ProductListProps {
-  productList: Product[];
-}
+export const ProductList = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const { products, loading, error } = useSelector((state: RootState) => state.products);
 
-export const ProductList: React.FC<ProductListProps> = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  productList,
-}) => {
-  return <div />;
+    useEffect(() => {
+      dispatch(getProducts())
+    }, [])
+
+  if (loading) return (<Loading />)
+  if (error) return (<Error />)
+
+  return (
+  <>
+    <ProductTable  products={products}/>
+  </>);
 };
