@@ -10,4 +10,4 @@ export const productSchema = z.object({
   price: z.number(),
 });
 
-export const productSSchema = z.array(productSchema);
+export const productsSchema = z.array(productSchema);

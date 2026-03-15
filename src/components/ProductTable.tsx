@@ -32,8 +32,6 @@ const columns: ColumnDef<Product>[] = [
 ]
 
 export const ProductTable = ({products, columnFilters, setColumnFilters} : IProductTableProps) => {
-
-    console.log(columnFilters)
     
     const table = useReactTable<Product>({
         data: products,
