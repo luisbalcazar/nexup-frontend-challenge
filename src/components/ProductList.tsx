@@ -6,8 +6,14 @@ import { AppDispatch, RootState } from '../store/store';
 import { Loading } from './Loading';
 import { ProductTable } from './ProductTable';
 import { Error } from './Error';
+import { ColumnFiltersState } from '../models/ColumFilter';
 
-export const ProductList = () => {
+interface IProductList {
+  columnFilters: ColumnFiltersState
+  setColumnFilters: React.Dispatch<unknown>
+}
+
+export const ProductList = ({columnFilters, setColumnFilters} : IProductList) => {
     const dispatch = useDispatch<AppDispatch>();
     const { products, loading, error } = useSelector((state: RootState) => state.products);
 
@@ -20,6 +26,6 @@ export const ProductList = () => {
 
   return (
   <>
-    <ProductTable  products={products}/>
+    <ProductTable  products={products} columnFilters={columnFilters} setColumnFilters={setColumnFilters}/>
   </>);
 };
